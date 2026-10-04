@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeStay - Hệ thống Quản lý Khách sạn</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/models.js" defer></script>
+    <script src="js/utils.js" defer></script>
+    <script src="js/app.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <h1>LuxeStay Hotel Management</h1>
+        <nav>
+            <ul>
+                <li><button id="nav-client" class="active">Client View</button></li>
+                <li><button id="nav-admin">Admin Dashboard</button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="app-container">
+        <!-- Client View Section -->
+        <section id="client-view" class="view-section">
+            <h2>Giao diện Đặt phòng (Client View)</h2>
+
+            <div id="suggest-box" class="card">
+                <h3>Gợi ý Phòng Cạnh Nhau (Gia đình / Nhóm đông)</h3>
+                <div class="form-group-inline">
+                    <label for="suggest-floor">Tầng:</label>
+                    <select id="suggest-floor">
+                        <option value="0">Tầng 1</option>
+                        <option value="1">Tầng 2</option>
+                        <option value="2">Tầng 3</option>
+                    </select>
+                    <label for="suggest-qty">Số lượng phòng:</label>
+                    <input type="number" id="suggest-qty" min="1" max="5" value="2">
+                    <button id="btn-suggest">Tìm phòng liền kề</button>
+                </div>
+                <div id="suggest-msg" class="msg-box"></div>
+            </div>
+
+            <div id="hotel-map-container" class="card">
+                <h3>Sơ đồ Phòng Khách sạn</h3>
+                <div id="hotel-map"></div>
+            </div>
+
+            <div id="booking-box" class="card">
+                <h3>Form Đặt Phòng</h3>
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="booking-room-id">Mã Phòng Đã Chọn:</label>
+                        <input type="text" id="booking-room-id" readonly placeholder="Nhấp chọn phòng ở sơ đồ trên">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-id">Mã Khách Hàng (ID):</label>
+                        <input type="text" id="cust-id" required placeholder="VD: CUS01">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-name">Tên Khách Hàng:</label>
+                        <input type="text" id="cust-name" required placeholder="Nguyễn Văn A">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-phone">Số Điện Thoại:</label>
+                        <input type="tel" id="cust-phone" required placeholder="0901234567">
+                    </div>
+                    <div class="form-group">
+                        <label for="cust-referred">Mã Người Giới Thiệu (Nếu có):</label>
+                        <input type="text" id="cust-referred" placeholder="VD: CUS00">
+                    </div>
+
+                    <div id="referral-discount-msg" class="msg-box highlight-text"></div>
+                    <div id="form-error-msg" class="msg-box error-text"></div>
+
+                    <button type="submit" id="btn-submit-booking">Xác nhận Đặt phòng</button>
+                </form>
+            </div>
+        </section>
+
+        <section id="admin-view" class="view-section hidden">
+            <h2>Bảng Quản lý (Admin Dashboard)</h2>
+
+            <div class="card">
+                <h3>Thống kê Doanh thu theo Loại Phòng</h3>
+                <canvas id="revenue-chart" width="500" height="250"></canvas>
+            </div>
+
+            <div class="card">
+                <h3>Danh sách Khách hàng & Điểm thưởng Referral</h3>
+                <div class="table-responsive">
+                    <table id="customer-table">
+                        <thead>
+                            <tr>
+                                <th>Mã KH</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Mã Người Giới Thiệu</th>
+                                <th>Điểm Thưởng (Đệ quy)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Lịch sử Giao dịch Đặt phòng</h3>
+                <div class="admin-actions">
+                    <button id="btn-filter-vip">Lọc đơn > 2.000.000 VNĐ</button>
+                    <button id="btn-sort-price">Sắp xếp theo Giá (Tăng dần)</button>
+                    <button id="btn-reset-table">Đặt lại Bảng</button>
+                    <button id="btn-export-email">Xuất danh sách Email/Tên KH (map)</button>
+                </div>
+                <div id="total-revenue-box" class="metric-box">
+                    Tổng doanh thu hệ thống: <strong id="total-revenue-val">0 VNĐ</strong>
+                </div>
+                <div class="table-responsive">
+                    <table id="booking-table">
+                        <thead>
+                            <tr>
+                                <th>Mã Đơn</th>
+                                <th>Mã Phòng</th>
+                                <th>Tên Khách Hàng</th>
+                                <th>Số Điện Thoại</th>
+                                <th>Thành Tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

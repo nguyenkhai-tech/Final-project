@@ -1,0 +1,198 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    color: #333;
+    padding-bottom: 40px;
+}
+
+header {
+    background-color: #1a252f;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+}
+
+nav button {
+    background-color: transparent;
+    border: 1px solid #ffffff66;
+    color: white;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+nav button.active {
+    background-color: #3498db;
+    border-color: #3498db;
+}
+
+#app-container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.view-section.hidden {
+    display: none;
+}
+
+.card {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    margin-bottom: 15px;
+    color: #2c3e50;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group-inline {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input, select, button {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Map Grid System */
+.floor-row {
+    margin-bottom: 15px;
+}
+
+.floor-title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.rooms-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.room-card {
+    padding: 15px;
+    border-radius: 6px;
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.room-card:hover {
+    transform: translateY(-2px);
+}
+
+.bg-green { background-color: #2ecc71; }
+.bg-red { background-color: #e74c3c; cursor: not-allowed; }
+.bg-highlight { background-color: #f39c12; border: 2px solid #d35400; }
+
+/* Table Styles & Responsive */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+th, td {
+    border: 1px solid #e0e0e0;
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f8f9fa;
+}
+
+.msg-box {
+    margin: 8px 0;
+    font-weight: bold;
+}
+
+.error-text { color: #c0392b; }
+.highlight-text { color: #2980b9; }
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+    flex-wrap: wrap;
+}
+
+.metric-box {
+    background-color: #e8f8f5;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Responsive Breakpoints */
+@media (max-width: 1024px) {
+    .rooms-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .rooms-grid {
+        grid-template-columns: 1fr;
+    }
+    .form-group-inline {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
